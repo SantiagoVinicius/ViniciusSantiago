@@ -1,0 +1,46 @@
+body{
+    background-image: url('../img/fundo-preto.jpg');
+    background-size: 100vw auto;
+    background-repeat: no-repeat;
+    font-family: arial;
+    height: 100vh;
+
+}
+@media(min-width:400px){
+    body{
+        font-size: 14px;
+        background-image: none;
+        background-color: limegreen;
+    }
+}
+@media(min-width:1200px){
+    body{
+        font-size: 20px;
+        background-image: none;
+        background-color:deeppink;
+    }
+}
+a{
+    color: teal;
+    text-decoration: none;
+}
+a:hover{
+text-decoration: underline;
+}
+.menu{
+    background-color: white;
+}
+.menu ul{
+display: flex;
+justify-content: space-around;
+}
+.menu li{
+    list-style: none;
+}
+.site-titulo, .site-subtitulo{
+    color: whitesmoke;
+    text-align: center;
+}
+.site-subtitulo{
+    font-style: italic;
+}
