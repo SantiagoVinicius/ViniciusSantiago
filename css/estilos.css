@@ -1,4 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Gloria+Hallelujah&family=Press+Start+2P&family=Source+Code+Pro:wght@300;400;700&display=swap');
+:root{
+    --cor-do-texto:whitesmoke;
+}
 *{
     margin: 0;
     padding: 0;
@@ -8,23 +11,21 @@ body{
     font-size: 12px;
     height: 300vh;
     font-family: arial;
-    color: whitesmoke;
+    color: var(--cor-do-texto);
     font-family: 'Gloria Hallelujah', cursive;font-family: 'Press Start 2P', cursive;
     font-family: 'Source Code Pro', monospace;
 }
-@media(min-width:400px){
-    body{
-        font-size: 14px;
-        background-image: none;
-        background-color: limegreen;
-    }
-}
-@media(min-width:1200px){
+
+@media(min-width:0px){
     body, .bkg{
         font-size: 20px;
-        background-image: url('../img/fundo-preto.jpg') ;
-        -webkit-backdrop-filter: blur(10px);
-        backdrop-filter: blur(10px);
+        background-image: url(../img/fundo4.jpg) ;
+        background-size: 100vw;
+        backdrop-filter: blur(3px);
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-position-x: right;
+        background-attachment: fixed;
     }
     
 }
@@ -33,9 +34,7 @@ a{
     color: teal;
     text-decoration: none;
 }
-a:hover{
-text-decoration: underline;
-}
+
 header{
 height: 100vh;
 display: flex;
@@ -45,7 +44,7 @@ flex-direction: column;
 
 }
 .menu{
-    background-color: whitesmoke;
+    background-color: var(--cor-do-texto);
     position: fixed;
     top: 0;
     width: 100vw;
@@ -60,9 +59,29 @@ justify-content: space-around;
 .menu li a{
     padding: 10px 20px;
     display: block;
+    transition: background-color 1s , color 0.5s;
+}
+.menu li a:hover{
+    color: var(--cor-do-texto);
+    background-color: teal;
+}
+
+.titulo{
+    transform: scale(0.2) translateY(50vh);
+    opacity: 0;
+    animation: 0.5s ease 1s animacaoTitulo forwards;
+}
+@keyframes animacaoTitulo{
+    from{
+        transform: scale(0.2) translateY(50vh);
+        opacity: 0;
+    }to{
+        transform: scale(1) translateY(0);
+        opacity: 1;
+    }
 }
 .site-titulo, .site-subtitulo{
-    color: whitesmoke;
+    color: var(--cor-do-texto);
     text-align: center;
     font-family: 'Gloria Hallelujah', cursive;
 }
@@ -76,25 +95,108 @@ justify-content: space-around;
 }
 .img-portifolio{
     height: 180px;
-    width: 180px;
-
+    width: 240px;
+object-fit: cover;
+object-position: center;
+transition:transform 500ms;
 }
-.portifolio{
+.portifolio, .contato, .sobre{
 padding: 2em;
-height: 100vh;
+min-height: 100vh;
 
 }
-.portifolio h2{
+.portifolio h2, .contato h2, .sobre h2{
     font-family: 'Press Start 2P', cursive;
-    color: whitesmoke;
+    color: var(--cor-do-texto);
     margin-bottom: 1.5em;
     font-size: 2em;
+}
+@media(min-width:0px){
+.portifolio .grid{
+    grid-template-columns: 240px 240px;
+}
+@media(min-width:0px) {
+    .portifolio .grid{
+        grid-template-columns: repeat(3, 260px);
+        justify-content: center;
+        height: calc(100vh - 8em -  48px);
+    }
+}
+.portifolio figure{
+    text-align: center;
+}
+
 }
 .portifolio .grid{
     display: grid;
     gap:2em;
-    grid-template-columns: 240px 240px;
 }
 
+.contato .icones{
+text-align: center;
+}
+.contato a{
+    color: var(--cor-do-texto);
+    font-size: 4em;
+    transition: text-shadow 0.5s;
+}
+.contato a:hover{
+    text-shadow: 0px 0px 20px rgba(255,255,255,.5);
+}
+@media(min-width:1200px){
+    .conteiner{
+        width: 1200px;
+        margin:0 auto;
+    }
+}
+.sobre p{
+    color: white;
+    text-indent: 1.4em;
+    margin-bottom: 1.4em;
+    text-align: justify;
+}
+.sobre .avatar{
+margin-left: 2em;
+}
+.sobre .avatar img{
+    width: 300px;
+    transform: scale(0.2) translateY(50vh);
+    opacity: 0;
+    animation: 2s ease 3s animacaoTitulo forwards;
+    clip-path: polygon(0% 0%, 100% 0%, 100% 80%, 80% 80%, 80% 100%, 50% 80%, 0% 80%);
+}
 
+@media (min-width:0px){
+    .sobre  .avatar{
+        float: right;
+    }
+}
+.flip-card{
+    height: 180px;
+    perspective: 1000px;
 
+}
+.flip-card:hover .card{
+transform:rotateY(180deg);
+}
+.card{
+    position: relative;
+    transition: transform 3s ;
+    transform-style:preserve-3d ;
+}
+.card-front,.card-back{
+    backface-visibility: hidden;
+    left: 0;
+    position: absolute;
+    top:0;
+    width: 100%;
+}
+.card-back{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgb(255,255,255,.7);
+    height: 240px;
+    width: 100%;
+    transform: rotateY(180deg);
+}
